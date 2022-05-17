@@ -1,0 +1,40 @@
+{% extends "index.html" %}
+{% block title %}Издательства{% endblock %}
+<body>
+{% block content %}
+<h1>{{ title }}</h1>
+
+<div class="accordion" id="accordionPanelsStayOpenExample">
+     <ul>
+        {% for key, value in books.items %}
+            <li>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-heading{{ forloop.counter }}">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-{{ forloop.counter }}" aria-expanded="true" aria-controls="panelsStayOpen-{{ forloop.counter }}">
+                        {{ key }}
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-{{ forloop.counter }}">
+                        <div class="accordion-body">
+                        <ul>
+                            {% for book in value %}
+
+                            <li>
+                                <h3>{{ book.title }}</h3>
+                                <p class="book_data">
+                                Автор: {{ book.author.full_name }}<br>
+                                Год издания: {{ book.year_release }}
+                                </p>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+     </ul>
+</div>
+{% endblock %}
+</body>
+</html>
